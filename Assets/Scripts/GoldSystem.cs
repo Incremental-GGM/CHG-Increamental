@@ -6,12 +6,11 @@ public class GoldSystem : MonoBehaviour
     public UnityEvent<int> OnGoldChanged;
     
     private int _gold;
-    [SerializeField] private int upperGoldValue;
     
 
-    public void GetGold()
+    public void GetGold(int value)
     {
-        _gold += upperGoldValue;
+        _gold += value;
         OnGoldChanged.Invoke(_gold);
     }
 }
