@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &3806827741577722132
+--- !u!1 &6031791963566359482
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,41 +8,40 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 5174551507023667889}
-  - component: {fileID: 1212069468283942613}
-  - component: {fileID: -23709271602454857}
-  - component: {fileID: 3266141509482907822}
-  - component: {fileID: 7181561976157919850}
-  m_Layer: 8
-  m_Name: Arrow
-  m_TagString: Arrow
+  - component: {fileID: 4617524555614910002}
+  - component: {fileID: 2704425421211270031}
+  - component: {fileID: 7914162400719538987}
+  - component: {fileID: 6389839022625604901}
+  m_Layer: 7
+  m_Name: Enemy
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &5174551507023667889
+--- !u!4 &4617524555614910002
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3806827741577722132}
+  m_GameObject: {fileID: 6031791963566359482}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.4254, y: 2.7446, z: 0}
-  m_LocalScale: {x: 4.364266, y: 4.364266, z: 4.364266}
+  m_LocalPosition: {x: -5.48, y: 1.82, z: 0}
+  m_LocalScale: {x: 6.023, y: 6.023, z: 6.023}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &1212069468283942613
+--- !u!212 &2704425421211270031
 SpriteRenderer:
   serializedVersion: 3
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3806827741577722132}
+  m_GameObject: {fileID: 6031791963566359482}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -84,7 +83,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 21300000, guid: 822f354388108a841a977c6afbb82cd1, type: 3}
+  m_Sprite: {fileID: -7282886668606283007, guid: 2b8ad9a4d02154443a88f93b2693ea18, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 1
   m_FlipY: 0
@@ -95,29 +94,32 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
   m_BlendShapeWeights: []
---- !u!114 &-23709271602454857
+--- !u!114 &7914162400719538987
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3806827741577722132}
+  m_GameObject: {fileID: 6031791963566359482}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8c77e73aa1554284bd82dbed4697a93b, type: 3}
+  m_Script: {fileID: 11500000, guid: 2fd3432558714daaad26f3bdf62c5de9, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Bow.Arrow
-  _speed: 9
-  whatIsEnemy:
+  m_EditorClassIdentifier: Assembly-CSharp::Enemy
+  moveSpeed: 0.93
+  whatIsPlayer:
     serializedVersion: 2
-    m_Bits: 128
---- !u!61 &3266141509482907822
+    m_Bits: 64
+  whatIsArrow:
+    serializedVersion: 2
+    m_Bits: 256
+--- !u!61 &6389839022625604901
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3806827741577722132}
+  m_GameObject: {fileID: 6031791963566359482}
   m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
@@ -149,38 +151,11 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.32, y: 0.32}
+    oldSize: {x: 0.27, y: 0.23}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.32, y: 0.32}
+  m_Size: {x: 0.27, y: 0.23}
   m_EdgeRadius: 0
---- !u!50 &7181561976157919850
-Rigidbody2D:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3806827741577722132}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
