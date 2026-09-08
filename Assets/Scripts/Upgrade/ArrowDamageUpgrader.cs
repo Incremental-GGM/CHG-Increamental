@@ -1,18 +1,21 @@
-﻿using System;
+﻿using Manager;
 using UnityEngine;
 
-namespace Bow
+namespace Upgrade
 {
     public class ArrowDamageUpgrader : MonoBehaviour
     {
         [SerializeField] private int price;
         [SerializeField] private int damage;
-        [SerializeField] private int damageUpperValue;
         [SerializeField] private int priceUpperValue;
 
+        [SerializeField] private Bow.Bow bow;
+        
+        
         public void HandleDamageUp()
         {
-            
+            if (!GoldManager.Instance.TryBuy(price)) return;
+            bow.DamageUp(damage);
         }
         
     }

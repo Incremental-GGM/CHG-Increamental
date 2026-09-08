@@ -15,9 +15,10 @@ public class Enemy : MonoBehaviour
     public void TakeDamage(int damage)
     {
         health -= damage;
+        
         if (health <= 0)
         {
-            GoldManager.Instance.GetGold(1);   
+            GoldManager.Instance.TryBuy(1);   
             Destroy(gameObject); 
         }
     }

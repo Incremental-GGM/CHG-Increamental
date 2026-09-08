@@ -10,16 +10,19 @@ namespace Manager
     
         [SerializeField] private bool isDonDestroy = false;
         private int _gold;
+        public int Gold => _gold;
     
         private void Awake()
         {
             base.Awake();
         }
 
-        public void GetGold(int value)
+        public bool TryBuy(int value)
         {
-            _gold += value;
+            if (Gold < value) return false;
+            _gold -= value;
             OnGoldChanged.Invoke(_gold);
+            return true;
         }
     }
 }

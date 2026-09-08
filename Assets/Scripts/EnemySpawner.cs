@@ -30,7 +30,7 @@ public class EnemySpawner : MonoBehaviour
     private void Update()
     {
         
-        if (lastWaveTime <= Time.time && !RunManager.Instance.EndRunning)
+        if (lastWaveTime <= Time.time && !RunManager.Instance.EndRunning || waveData.Count > wave)
         {
             StartCoroutine(StartWave());
             lastWaveTime = Time.time + waveCoolTime;

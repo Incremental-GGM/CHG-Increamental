@@ -911,7 +911,7 @@ GameObject:
   - component: {fileID: 704387645}
   - component: {fileID: 704387644}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Title Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -933,8 +933,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 45.23169}
+  m_SizeDelta: {x: 0, y: -90.4634}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &704387644
 MonoBehaviour:
@@ -983,8 +983,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 40.9
-  m_fontSizeBase: 40.9
+  m_fontSize: 62.1
+  m_fontSizeBase: 62.1
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -1148,7 +1148,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   cooldown: 0.3
-  _defaultDamage: 0
+  _defaultDamage: 3
 --- !u!61 &759697043
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1973,7 +1973,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1004928815}
         m_TargetAssemblyTypeName: GoldSystem, Assembly-CSharp
-        m_MethodName: GetGold
+        m_MethodName: ChangeGold
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2021,6 +2021,68 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1096600245}
   m_CullTransparentMesh: 1
+--- !u!1 &1116086982
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1116086984}
+  - component: {fileID: 1116086983}
+  m_Layer: 0
+  m_Name: UpgradeManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1116086983
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1116086982}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f44cc276161d438a80625be36eaebe8f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Manager.UpgradeManager
+  isDonDestroy: 0
+  _defaultUpgradeData:
+  - Id: AttackSpeed
+    DisplayName: "\uACF5\uACA9\uC18D\uB3C4"
+    InitialValue: 1
+    ValueMultiplier: 1.5
+    InitialCost: 20
+    CostMultiplier: 3
+    CurrentLevel: 0
+    MaxLevel: 3
+  - Id: Damage
+    DisplayName: "\uACF5\uACA9\uB825"
+    InitialValue: 2
+    ValueMultiplier: 1.5
+    InitialCost: 10
+    CostMultiplier: 2
+    CurrentLevel: 0
+    MaxLevel: 5
+--- !u!4 &1116086984
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1116086982}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 243.71335, y: 1151.143, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1294268638
 GameObject:
   m_ObjectHideFlags: 0
@@ -2083,6 +2145,143 @@ Transform:
   m_Children: []
   m_Father: {fileID: 760143694}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1366174695
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1366174696}
+  - component: {fileID: 1366174698}
+  - component: {fileID: 1366174697}
+  m_Layer: 5
+  m_Name: Price Text
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1366174696
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1366174695}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2112975916}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
+  m_AnchoredPosition: {x: 0.000022888184, y: 0}
+  m_SizeDelta: {x: 0, y: 90.463}
+  m_Pivot: {x: 0.5, y: 0}
+--- !u!114 &1366174697
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1366174695}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: Upgrade
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: e2e17295fc1558745885d71be3173751, type: 2}
+  m_sharedMaterial: {fileID: 736249655187236751, guid: e2e17295fc1558745885d71be3173751, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4281479730
+  m_fontColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 62.1
+  m_fontSizeBase: 62.1
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 0
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_characterHorizontalScale: 1
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_TextWrappingMode: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 0
+  m_ActiveFontFeatures: 6e72656b
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_EmojiFallbackSupport: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &1366174698
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1366174695}
+  m_CullTransparentMesh: 1
 --- !u!1 &1451834461
 GameObject:
   m_ObjectHideFlags: 0
@@ -2708,12 +2907,13 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 704387643}
+  - {fileID: 1366174696}
   m_Father: {fileID: 1752434887}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 45, y: -39}
-  m_SizeDelta: {x: 160, y: 150}
+  m_SizeDelta: {x: 242.9211, y: 227.7335}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &2112975917
 MonoBehaviour:
@@ -2758,7 +2958,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2112975918}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: Bow.ArrowDamageUpgrader, Assembly-CSharp
+        m_MethodName: HandleDamageUp
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2112975918
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2806,13 +3018,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 2112975915}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f904dfab22174ed29b429f5ec9c9a017, type: 3}
+  m_Script: {fileID: 11500000, guid: eabdd6e3b5fd45b2b8ea3d68ebfd84a3, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Bow.ArrowDamageUpgrader
-  price: 0
-  damage: 0
-  damageUpperValue: 0
-  priceUpperValue: 0
+  m_EditorClassIdentifier: Assembly-CSharp::Upgrade.UpgradeBtn
+  _titleText: {fileID: 704387644}
+  _priceText: {fileID: 1366174697}
+  Key: AttackSpeed
+  title: "\uACF5\uACA9 \uC18D\uB3C4"
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -2829,3 +3041,4 @@ SceneRoots:
   - {fileID: 760143694}
   - {fileID: 273428116}
   - {fileID: 450676642}
+  - {fileID: 1116086984}

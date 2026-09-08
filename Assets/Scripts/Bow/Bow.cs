@@ -10,7 +10,7 @@ namespace Bow
         public int Damage
         {
             get => _damage;
-            set
+            private set
             {
                 _damage = value;
                 _damage = Mathf.Clamp(_damage, 0, int.MaxValue);
@@ -20,12 +20,17 @@ namespace Bow
         [SerializeField] private GameObject arrowPrefab;
         [SerializeField] private LayerMask whatIsEnemy;
         [SerializeField] private float cooldown;
-        [SerializeField] private int _defaultDamage;
+        [SerializeField] private int _defaultDamage = 3;
         private int _damage;
         private Vector2 _mousePos = Vector2.zero;
         private float angle;
 
         private float _nextShot = 0;
+
+        private void Awake()
+        {
+            UpgradeManager.Instance.OnStatChanged += HandleUpgrade;
+        }
 
         private void Update()
         {
@@ -59,8 +64,11 @@ namespace Bow
                 Destroy(collision.gameObject);
             }
         }
-        
-        
-        
+
+        public void DamageUp(int damage) => Damage += damage;
+        private void HandleUpgrade(string key, int arg2)
+        {
+            
+        }
     }
 }
