@@ -17,14 +17,20 @@ namespace Bow
             }
         }
         
+        //Arrow
         [SerializeField] private GameObject arrowPrefab;
-        [SerializeField] private LayerMask whatIsEnemy;
-        [SerializeField] private float cooldown;
+        [SerializeField] private float _cooldown = 0.3f;
         [SerializeField] private int _defaultDamage = 3;
-        private int _damage;
-        private Vector2 _mousePos = Vector2.zero;
-        private float angle;
 
+        //Animation
+        [SerializeField] private Animator animator;
+
+        //Collision
+        [SerializeField] private LayerMask _whatIsEnemy;
+
+		private int _damage;
+        private Vector2 _mousePos = Vector2.zero;
+        private float _angle;
         private float _nextShot = 0;
 
         private void Awake()
@@ -39,9 +45,9 @@ namespace Bow
             Vector2 dir = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             _mousePos = dir - (Vector2)transform.position;
     
-            angle = Mathf.Atan2(_mousePos.y, _mousePos.x) * Mathf.Rad2Deg;
+            _angle = Mathf.Atan2(_mousePos.y, _mousePos.x) * Mathf.Rad2Deg;
     
-            transform.rotation = Quaternion.Euler(0, 0, angle);
+            transform.rotation = Quaternion.Euler(0, 0, _angle);
         }
         
 
@@ -49,11 +55,13 @@ namespace Bow
         {
             if (_nextShot <= Time.time)
             {
-                Arrow arrow = Instantiate(arrowPrefab, transform.position, Quaternion.Euler(0,0, angle)).GetComponent<Arrow>();
+                Arrow arrow = Instantiate(arrowPrefab, transform.position, Quaternion.Euler(0,0, _angle)).GetComponent<Arrow>();
                 arrow.Init(Damage);
                 
-                _nextShot = Time.time + cooldown; 
-            }
+                _nextShot = Time.time + _cooldown;
+
+                animator.Play("Anim_Bow_Attack");
+			}
         }
 
         private void OnCollisionEnter2D(Collision2D collision)

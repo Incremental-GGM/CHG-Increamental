@@ -1460,6 +1460,7 @@ GameObject:
   - component: {fileID: 759697042}
   - component: {fileID: 759697043}
   - component: {fileID: 759697044}
+  - component: {fileID: 759697045}
   m_Layer: 6
   m_Name: Bow
   m_TagString: Player
@@ -1555,11 +1556,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Bow.Bow
   arrowPrefab: {fileID: 3806827741577722132, guid: 594389fb41121ab4eae3ed89af4e6706, type: 3}
-  whatIsEnemy:
-    serializedVersion: 2
-    m_Bits: 64
-  cooldown: 0.3
+  _cooldown: 0.3
   _defaultDamage: 3
+  animator: {fileID: 759697045}
+  _whatIsEnemy:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!61 &759697043
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1633,6 +1635,28 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!95 &759697045
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 759697039}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 0ab069cb6eb76f94b98407c5985d3472, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &760143692
 GameObject:
   m_ObjectHideFlags: 0
