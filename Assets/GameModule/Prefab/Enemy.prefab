@@ -107,8 +107,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fd3432558714daaad26f3bdf62c5de9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
-  moveSpeed: 0.93
-  health: 3
+  _moveSpeed: 3
+  _health: 2
+  _gold:
+    mantissa: 1
+    exponent: 0
 --- !u!61 &6389839022625604901
 BoxCollider2D:
   m_ObjectHideFlags: 0

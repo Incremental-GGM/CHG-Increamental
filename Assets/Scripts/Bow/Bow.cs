@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Manager;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -6,19 +7,13 @@ using UnityEngine.InputSystem;
 namespace Bow
 {
     public class Bow : MonoBehaviour
-    {
-        public int Damage
-        {
-            get => _damage;
-            private set
-            {
-                _damage = value;
-                _damage = Mathf.Clamp(_damage, 0, int.MaxValue);
-            }
-        }
-        
-        //Arrow
-        [SerializeField] private GameObject arrowPrefab;
+	{
+        //Stats
+		public int Damage => Mathf.RoundToInt((statsDic["Damage"] + 1) * 1.5f);
+		private Dictionary<string, int> statsDic = new Dictionary<string, int>();
+
+		//Arrow
+		[SerializeField] private GameObject arrowPrefab;
         [SerializeField] private float _cooldown = 0.3f;
         [SerializeField] private int _defaultDamage = 3;
 
@@ -28,14 +23,17 @@ namespace Bow
         //Collision
         [SerializeField] private LayerMask _whatIsEnemy;
 
-		private int _damage;
         private Vector2 _mousePos = Vector2.zero;
         private float _angle;
         private float _nextShot = 0;
 
+
+
         private void Awake()
         {
-            UpgradeManager.Instance.OnStatChanged += HandleUpgrade;
+            statsDic.Add("Damage", 1);
+
+			UpgradeManager.Instance.OnStatChanged += HandleUpgrade;
         }
 
         private void Update()
@@ -73,10 +71,12 @@ namespace Bow
             }
         }
 
-        public void DamageUp(int damage) => Damage += damage;
+        //public void DamageUp(int damage) => Damage += damage;
+
         private void HandleUpgrade(string key, int arg2)
         {
-            
+            //좋은 구조인듯
+            statsDic[key] = arg2;
         }
     }
 }

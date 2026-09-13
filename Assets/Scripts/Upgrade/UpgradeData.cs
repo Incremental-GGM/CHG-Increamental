@@ -9,15 +9,15 @@ namespace Upgrade
     {
         public string Id;
         public string DisplayName;
-        public int InitialValue;
+        public BigNumber InitialValue;
         public double ValueMultiplier;
-        public int InitialCost;
+        public BigNumber InitialCost;
         public double CostMultiplier;
         [HideInInspector] public int CurrentLevel;
         public int MaxLevel;
         public List<string> Prerequisites;
 
-        public UpgradeData(string id, string displayName, int maxLevel, int currentLevel, int initialValue = 1, int initialCost = 1, double costMultiplier = 1.5,
+        public UpgradeData(string id, string displayName, int maxLevel, int currentLevel, BigNumber initialValue, BigNumber initialCost, double costMultiplier = 1.5,
             double valueMultiplier = 1.5)
         {
             Id = id;
@@ -30,5 +30,13 @@ namespace Upgrade
             MaxLevel = maxLevel;
             Prerequisites = new List<string>();
         }
+
+        public BigNumber CalculateCost(int targetLevel)
+		{
+			if (InitialCost.Mantissa == 0) return BigNumber.Zero;
+			double power = Math.Log10(CostMultiplier) * Math.Max(0, targetLevel);
+			long exponent = (long)Math.Floor(power);
+			return InitialCost * new BigNumber(Math.Pow(10, power - exponent), exponent);
+		}
     }
 }

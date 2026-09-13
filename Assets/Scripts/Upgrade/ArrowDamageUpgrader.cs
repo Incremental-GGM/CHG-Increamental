@@ -5,17 +5,17 @@ namespace Upgrade
 {
     public class ArrowDamageUpgrader : MonoBehaviour
     {
-        [SerializeField] private int price;
-        [SerializeField] private int damage;
-        [SerializeField] private int priceUpperValue;
+        [SerializeField] private BigNumber _price;
+        [SerializeField] private int _damage;
+        [SerializeField] private int _priceUpperValue;
 
         [SerializeField] private Bow.Bow bow;
         
         
         public void HandleDamageUp()
         {
-            if (!GoldManager.Instance.TryBuy(price)) return;
-            bow.DamageUp(damage);
+            if (!GoldManager.Instance.TryBuy(_price)) return;
+            //bow.DamageUp(_damage);
         }
         
     }

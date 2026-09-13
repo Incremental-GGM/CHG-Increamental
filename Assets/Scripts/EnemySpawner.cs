@@ -16,45 +16,73 @@ public struct WaveData
 
 public class EnemySpawner : MonoBehaviour
 {
-    private int wave = 0;
+    private int waveIndex = 0;
     
     [SerializeField] private List<Transform> spawnPoints = new List<Transform>();
     [SerializeField] private List<WaveData> waveData = new List<WaveData>();
     [SerializeField] private GameObject enemyPrefab;
     [SerializeField] private float waveCoolTime = 10f;
-    
-    private float _spawnCoolTime = 1f;
 
+    List<GameObject> enemys = new List<GameObject>();
     private float lastWaveTime = 0;
 
-    private void Update()
+    private Coroutine waveCoroutine;
+
+
+    public void ResetWave()
+    {
+        StopWave();
+
+        foreach (var enemy in enemys)
+        {
+            if(enemy != null)
+                Destroy(enemy);
+        }
+        enemys.Clear();
+
+		waveIndex = 0;
+		lastWaveTime = Time.time + waveCoolTime;
+	}
+
+	public void StopWave()
+	{
+		if (waveCoroutine != null)
+		{
+			StopCoroutine(waveCoroutine);
+			waveCoroutine = null;
+		}
+	}
+
+	private void Update()
     {
         
-        if (lastWaveTime <= Time.time && !RunManager.Instance.EndRunning || waveData.Count > wave)
+        if (lastWaveTime <= Time.time && !RunManager.Instance.EndRunning || waveData.Count > waveIndex)
         {
-            StartCoroutine(StartWave());
+            StopWave();
+			waveCoroutine = StartCoroutine(StartWave());
             lastWaveTime = Time.time + waveCoolTime;
-            wave++;
+            waveIndex++;
         }
     }
 
     private IEnumerator StartWave()
     {
-        /*float spawnTime = waveData[wave].spawnCoolTime;
-        float spawnCount = waveData[wave].spawnCount;
-        if (spawnTime * spawnCount >= waveCoolTime)
+        //에러 방지
+        int currentWaveIndex = waveIndex;
+        if (waveIndex >= waveData.Count)
         {
-            //총 스폰 시간이 웨이브 시간보다 길 때 처리    
-        }*/
-        
-        for (int i = 0; i < waveData[wave].spawnCount; i++)
+            currentWaveIndex = waveData.Count - 1;
+		}
+
+        var currentWaveData = waveData[currentWaveIndex];
+
+
+		for (int i = 0; i < currentWaveData.spawnCount; i++)
         {
             Transform pos = spawnPoints[Random.Range(0, spawnPoints.Count)];
             GameObject enemy = Instantiate(enemyPrefab, pos.position, Quaternion.identity);
-                
-            yield return new WaitForSeconds(waveData[wave].spawnCoolTime);
-            if (RunManager.Instance.EndRunning)
-                break;
+            enemys.Add(enemy);
+			yield return new WaitForSeconds(currentWaveData.spawnCoolTime);
         }
     }
 }

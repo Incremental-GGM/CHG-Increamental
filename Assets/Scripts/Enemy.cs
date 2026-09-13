@@ -4,21 +4,22 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    [SerializeField] private float moveSpeed;
-    [SerializeField] private int health = 5;
+    [SerializeField] private float _moveSpeed;
+    [SerializeField] private int _health = 5;
+    [SerializeField] BigNumber _gold;
     
     private void Update()
     {
-        transform.position += (Vector3.zero - transform.position).normalized * (moveSpeed * Time.deltaTime);
+        transform.position += (Vector3.zero - transform.position).normalized * (_moveSpeed * Time.deltaTime);
     }
 
     public void TakeDamage(int damage)
     {
-        health -= damage;
+        _health -= damage;
         
-        if (health <= 0)
+        if (_health <= 0)
         {
-            GoldManager.Instance.TryBuy(1);   
+            GoldManager.Instance.AddGold(_gold);
             Destroy(gameObject); 
         }
     }

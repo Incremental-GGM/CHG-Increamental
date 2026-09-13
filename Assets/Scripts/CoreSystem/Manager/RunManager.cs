@@ -6,10 +6,15 @@ namespace Manager
 {
     public class RunManager : MonoSingleton<RunManager>
     {
-        [SerializeField] private GameObject reStartBtn;
-        private bool _endRunning = false;
-
         public bool EndRunning => _endRunning;
+
+        [SerializeField] GameObject upgradePanel;
+        [SerializeField] private GameObject reStartBtn;
+		[SerializeField] EnemySpawner spawner;
+
+		private bool _endRunning = false;
+
+
 
         protected override void Awake()
         {
@@ -18,15 +23,19 @@ namespace Manager
         }
         
         public void HandleRestart()
-        {
-            reStartBtn.SetActive(true);
+		{
+			upgradePanel.gameObject.SetActive(true);
+			reStartBtn.SetActive(true);
+
+			spawner.StopWave();
             _endRunning = true;
         }
 
         public void Restart()
-        {
-            _endRunning = false;
-            SceneManager.LoadScene(0);
+		{
+			upgradePanel.gameObject.SetActive(false);
+			spawner.ResetWave();
+			_endRunning = false;
         }
     }
 }

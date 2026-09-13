@@ -7,7 +7,7 @@ namespace UI
     {
         [SerializeField] private TextMeshProUGUI goldText;
 
-        public void GoldTextChange(int goldValue)
+        public void GoldTextChange(BigNumber goldValue)
         {
             goldText.text = "Gold: " + goldValue;
         }
