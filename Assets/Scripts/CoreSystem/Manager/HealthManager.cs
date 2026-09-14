@@ -18,25 +18,28 @@ namespace Manager
             set
             {
                 _health = value;
-                _health = Mathf.Clamp(_health, 0, maxHealth);
-                OnHealthChange?.Invoke(_health);
-                if (_health <= 0)
-                {
-                    OnDeath?.Invoke();
-                    Debug.Log("게임 오버");
-                }
+
+                //게임오버 호출 예측이 어려워서 함수로 옮김
             }
         }
 
         protected override void Awake()
         {
             base.Awake();
-            Health = maxHealth;
+			_health = maxHealth;
         }
 
         public void TakeDamage(int damage)
         {
-            Health -= damage;
-        }
+			_health -= damage;
+
+			_health = Mathf.Clamp(_health, 0, maxHealth);
+			OnHealthChange?.Invoke(_health);
+			if (_health <= 0)
+			{
+				OnDeath?.Invoke();
+				Debug.Log("게임 오버");
+			}
+		}
     }
 }

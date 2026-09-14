@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Manager;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -6,30 +7,33 @@ using UnityEngine.InputSystem;
 namespace Bow
 {
     public class Bow : MonoBehaviour
-    {
-        public int Damage
-        {
-            get => _damage;
-            private set
-            {
-                _damage = value;
-                _damage = Mathf.Clamp(_damage, 0, int.MaxValue);
-            }
-        }
-        
-        [SerializeField] private GameObject arrowPrefab;
-        [SerializeField] private LayerMask whatIsEnemy;
-        [SerializeField] private float cooldown;
-        [SerializeField] private int _defaultDamage = 3;
-        private int _damage;
-        private Vector2 _mousePos = Vector2.zero;
-        private float angle;
+	{
+        //Stats
+		public int Damage => Mathf.RoundToInt((statsDic["Damage"] + 1) * 1.5f);
+		private Dictionary<string, int> statsDic = new Dictionary<string, int>();
 
+		//Arrow
+		[SerializeField] private GameObject arrowPrefab;
+        [SerializeField] private float _cooldown = 0.3f;
+        [SerializeField] private int _defaultDamage = 3;
+
+        //Animation
+        [SerializeField] private Animator animator;
+
+        //Collision
+        [SerializeField] private LayerMask _whatIsEnemy;
+
+        private Vector2 _mousePos = Vector2.zero;
+        private float _angle;
         private float _nextShot = 0;
+
+
 
         private void Awake()
         {
-            UpgradeManager.Instance.OnStatChanged += HandleUpgrade;
+            statsDic.Add("Damage", 1);
+
+			UpgradeManager.Instance.OnStatChanged += HandleUpgrade;
         }
 
         private void Update()
@@ -39,9 +43,9 @@ namespace Bow
             Vector2 dir = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             _mousePos = dir - (Vector2)transform.position;
     
-            angle = Mathf.Atan2(_mousePos.y, _mousePos.x) * Mathf.Rad2Deg;
+            _angle = Mathf.Atan2(_mousePos.y, _mousePos.x) * Mathf.Rad2Deg;
     
-            transform.rotation = Quaternion.Euler(0, 0, angle);
+            transform.rotation = Quaternion.Euler(0, 0, _angle);
         }
         
 
@@ -49,11 +53,13 @@ namespace Bow
         {
             if (_nextShot <= Time.time)
             {
-                Arrow arrow = Instantiate(arrowPrefab, transform.position, Quaternion.Euler(0,0, angle)).GetComponent<Arrow>();
+                Arrow arrow = Instantiate(arrowPrefab, transform.position, Quaternion.Euler(0,0, _angle)).GetComponent<Arrow>();
                 arrow.Init(Damage);
                 
-                _nextShot = Time.time + cooldown; 
-            }
+                _nextShot = Time.time + _cooldown;
+
+                animator.Play("Anim_Bow_Attack");
+			}
         }
 
         private void OnCollisionEnter2D(Collision2D collision)
@@ -65,10 +71,12 @@ namespace Bow
             }
         }
 
-        public void DamageUp(int damage) => Damage += damage;
+        //public void DamageUp(int damage) => Damage += damage;
+
         private void HandleUpgrade(string key, int arg2)
         {
-            
+            //좋은 구조인듯
+            statsDic[key] = arg2;
         }
     }
 }

@@ -6,20 +6,26 @@ namespace Manager
     public class GoldManager : MonoSingleton<GoldManager>
     {
     
-        public UnityEvent<int> OnGoldChanged;
+        public UnityEvent<BigNumber> OnGoldChanged;
     
-        [SerializeField] private bool isDonDestroy = false;
-        private int _gold;
-        public int Gold => _gold;
+        private BigNumber _gold = new BigNumber();
+        public BigNumber Gold => _gold;
     
-        private void Awake()
-        {
-            base.Awake();
-        }
+		public void AddGold(BigNumber amount)
+		{
+			if (amount.Mantissa <= 0)
+				return;
 
-        public bool TryBuy(int value)
+			_gold += amount;
+
+
+			OnGoldChanged?.Invoke(Gold);
+		}
+
+		public bool TryBuy(BigNumber value)
         {
-            if (Gold < value) return false;
+            if (_gold < value)
+                return false;
             _gold -= value;
             OnGoldChanged.Invoke(_gold);
             return true;

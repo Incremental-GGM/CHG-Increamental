@@ -6,7 +6,7 @@ namespace Bow
     public class Arrow : MonoBehaviour
     {
         [SerializeField] private float _speed;
-        [SerializeField] private LayerMask whatIsEnemy;
+        [SerializeField] private LayerMask _whatIsEnemy;
 
         private int _damage = 1;
 

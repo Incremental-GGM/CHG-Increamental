@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2704425421211270031}
   - component: {fileID: 7914162400719538987}
   - component: {fileID: 6389839022625604901}
+  - component: {fileID: 7539758929881004058}
   m_Layer: 7
   m_Name: Enemy
   m_TagString: Enemy
@@ -106,13 +107,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fd3432558714daaad26f3bdf62c5de9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
-  moveSpeed: 0.93
-  whatIsPlayer:
-    serializedVersion: 2
-    m_Bits: 64
-  whatIsArrow:
-    serializedVersion: 2
-    m_Bits: 256
+  _moveSpeed: 3
+  _health: 2
+  _gold:
+    mantissa: 1
+    exponent: 0
 --- !u!61 &6389839022625604901
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -159,3 +158,25 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.27, y: 0.23}
   m_EdgeRadius: 0
+--- !u!95 &7539758929881004058
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6031791963566359482}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f60152d6418d91a48ae4476ceccd6b4e, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
