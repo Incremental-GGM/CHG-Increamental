@@ -2,15 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Upgrade
+namespace _01.Scripts.Upgrade
 {
     [Serializable]
     public struct UpgradeData
     {
+        public event Action<UpgradeData> OnStatChanged;
+        
         public string Id;
         public string DisplayName;
         public BigNumber InitialValue;
-        public double ValueMultiplier;
+        public double ValueMultiplier; 
         public BigNumber InitialCost;
         public double CostMultiplier;
         [HideInInspector] public int CurrentLevel;
@@ -29,6 +31,7 @@ namespace Upgrade
             CurrentLevel = 0;
             MaxLevel = maxLevel;
             Prerequisites = new List<string>();
+            OnStatChanged = null;
         }
 
         public BigNumber CalculateCost(int targetLevel)
@@ -38,5 +41,7 @@ namespace Upgrade
 			long exponent = (long)Math.Floor(power);
 			return InitialCost * new BigNumber(Math.Pow(10, power - exponent), exponent);
 		}
+        
+        public void OnValueChanged(UpgradeData data) => OnStatChanged?.Invoke(data);
     }
 }

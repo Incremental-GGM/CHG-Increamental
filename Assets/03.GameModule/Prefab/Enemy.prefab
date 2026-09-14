@@ -107,8 +107,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fd3432558714daaad26f3bdf62c5de9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
-  _moveSpeed: 3
-  _health: 2
+  _moveSpeed: 1.5
+  _health: 5
   _gold:
     mantissa: 1
     exponent: 0
