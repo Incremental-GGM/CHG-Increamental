@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using _01.Scripts.CoreSystem.Manager;
+using _01.Scripts.Upgrade;
 using Manager;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -10,8 +11,8 @@ namespace Bow
     public class Bow : MonoBehaviour
 	{
         //Stats
-		public int Damage => Mathf.RoundToInt((statsDic["Damage"] + 1) * 1.5f);
-		private Dictionary<string, int> statsDic = new Dictionary<string, int>();
+		public int Damage => Mathf.RoundToInt(((float)statsDic["Damage"].ToDouble() + 1) * 1.5f);
+		private Dictionary<string, BigNumber> statsDic = new Dictionary<string, BigNumber>();
 
 		//Arrow
 		[SerializeField] private GameObject arrowPrefab;
@@ -32,7 +33,7 @@ namespace Bow
 
         private void Awake()
         {
-            statsDic.Add("Damage", 1);
+            statsDic.Add("Damage", BigNumber.One);
 
 			UpgradeManager.Instance.OnStatChanged += HandleUpgrade;
         }
@@ -74,10 +75,11 @@ namespace Bow
 
         //public void DamageUp(int damage) => Damage += damage;
 
-        private void HandleUpgrade(string key, int arg2)
+        private void HandleUpgrade(UpgradeData data)
         {
             //좋은 구조인듯
-            statsDic[key] = arg2;
+            statsDic[data.Id] = data.InitialValue;
+            Debug.Log($"{data.Id} Upgrade: {statsDic[data.Id]}");
         }
     }
 }

@@ -82,10 +82,14 @@ public struct BigNumber
 			a.exponent + b.exponent
 		);
 	}
+		
 	public static bool operator <(BigNumber a, BigNumber b)
 	{
 		return b > a;
 	}
+	
+
+	public double ToDouble() => mantissa * Math.Pow(10, exponent);
 
 	public static BigNumber DoubleToBigNumber(double value)
 	{
